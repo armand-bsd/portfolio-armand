@@ -1,0 +1,48 @@
+/* Palette verrouillée */
+:root { --gold: #D4AF37; --navy: #0A192F; --white: #ffffff; }
+body.dark { --white: #0F172A; --navy: #F8FAFC; }
+
+body { background: var(--white); color: var(--navy); font-family: 'Outfit', sans-serif; transition: background 0.4s ease, color 0.4s ease; overflow-x: hidden; }
+.font-serif { font-family: 'Playfair Display', serif; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+.gold-text { color: var(--gold); }
+
+/* GLITCH & EFFETS */
+.glitch { position: relative; cursor: pointer; }
+.glitch:hover::before { content: attr(data-text); position: absolute; left: 2px; text-shadow: -2px 0 #ff00c1; clip: rect(44px, 450px, 56px, 0); animation: glitch-anim 2s infinite linear alternate-reverse; }
+@keyframes glitch-anim { 0% { clip: rect(10px, 999px, 40px, 0); } 100% { clip: rect(50px, 999px, 80px, 0); } }
+
+/* TILT 3D HERO */
+.tilt-wrapper { perspective: 1000px; }
+.tilt-element { transition: transform 0.1s ease-out; transform-style: preserve-3d; }
+
+/* TIMELINE DYNAMIQUE & GLOW ATTÉNUÉ */
+.timeline-wrapper { position: relative; padding-left: 20px; }
+.timeline-bar { position: absolute; left: 0; top: 0; width: 4px; height: 100%; background: rgba(212, 175, 55, 0.1); border-radius: 10px; }
+.timeline-progress { position: absolute; left: 0; top: 0; width: 4px; height: 0%; background: var(--gold); box-shadow: 0 0 10px var(--gold); border-radius: 10px; }
+
+.timeline-item { transition: all 0.5s ease; opacity: 0.5; filter: grayscale(100%); }
+.timeline-item.active-glow { opacity: 1; filter: grayscale(0%); transform: scale(1.02); }
+.timeline-item.active-glow h3 { color: var(--navy); text-shadow: 0 0 8px rgba(255, 255, 255, 0.6), 0 0 15px rgba(212, 175, 55, 0.2); }
+body.dark .timeline-item.active-glow h3 { color: #fff; text-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 0 0 15px rgba(212, 175, 55, 0.5); }
+
+/* TERMINAL & LINKS */
+.terminal-container { background: #050a15; border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 12px; transition: box-shadow 0.3s ease; }
+.terminal-container:hover { box-shadow: 0 0 25px rgba(212, 175, 55, 0.2); }
+
+.interactive-link { position: relative; display: inline-block; font-weight: bold; text-decoration: none; color: inherit; }
+.interactive-link::after { content: ''; position: absolute; width: 100%; transform: scaleX(0); height: 2px; bottom: 0; left: 0; background-color: var(--gold); transform-origin: bottom right; transition: transform 0.25s ease-out; }
+.interactive-link:hover::after { transform: scaleX(1); transform-origin: bottom left; }
+.interactive-link:hover { color: var(--gold); }
+
+.reveal { opacity: 0; transform: translateY(30px); }
+
+/* CONTACT FORM */
+.contact-card { background: var(--white); border: 1px solid rgba(10, 25, 47, 0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+body.dark .contact-card { background: #111d2f; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+
+/* MATRIX EASTER EGG */
+#matrix-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9999; pointer-events: none; opacity: 0; transition: opacity 1s; }
+
+/* ANIMATION JEU CYBER */
+@keyframes shake { 0%, 100% {transform: translateX(0);} 25% {transform: translateX(-5px);} 75% {transform: translateX(5px);} }

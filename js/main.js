@@ -238,9 +238,9 @@ tInput.addEventListener('keypress', (e) => {
 
 // JEU CYBER AVANCÉ
 let secretPin = Math.floor(1000 + Math.random() * 9000);
-let maxAttempts = 7;
+let maxAttempts = 10;
 let attemptsLeft = maxAttempts;
-let timeLeft = 60;
+let timeLeft = 100;
 let gameActive = false;
 let timerInterval;
 

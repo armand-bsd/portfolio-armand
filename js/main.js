@@ -240,7 +240,7 @@ tInput.addEventListener('keypress', (e) => {
 let secretPin = Math.floor(1000 + Math.random() * 9000);
 let maxAttempts = 15;
 let attemptsLeft = maxAttempts;
-let timeLeft = 100;
+let timeLeft = 60;
 let gameActive = false;
 let timerInterval;
 
@@ -278,7 +278,7 @@ function gameOver(msg) {
 }
 
 function checkPin() {
-    if(!gameActive && timeLeft === 100) startTimer();
+    if(!gameActive && timeLeft === 60) startTimer();
     if(!gameActive) return;
 
     const guess = parseInt(pinInput.value);

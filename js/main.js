@@ -240,7 +240,7 @@ tInput.addEventListener('keypress', (e) => {
 let secretPin = Math.floor(1000 + Math.random() * 9000);
 let maxAttempts = 15;
 let attemptsLeft = maxAttempts;
-let timeLeft = 60;
+let timeLeft = 99;
 let gameActive = false;
 let timerInterval;
 

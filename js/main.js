@@ -122,6 +122,8 @@ document.getElementById('smart-contact-form').addEventListener('submit', async (
     const formData = new FormData(form);
     // On ajoute manuellement l'Access Key de Web3Forms
     formData.append("access_key", "49b27977-0e55-406e-9113-345b874e22ba"); 
+    // Suppression du champ Turnstile pour éviter que Web3Forms ne bloque la requête (fonctionnalité PRO)
+    formData.delete("cf-turnstile-response");
 
     try {
         const response = await fetch("https://api.web3forms.com/submit", {

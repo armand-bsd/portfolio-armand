@@ -140,7 +140,7 @@ document.getElementById('smart-contact-form').addEventListener('submit', async (
             form.reset();
             if (typeof turnstile !== 'undefined') turnstile.reset();
         } else {
-            alert(result.message || "Erreur lors de l'envoi. Veuillez réessayer.");
+            alert("Erreur Web3Forms: " + JSON.stringify(result));
             if (typeof turnstile !== 'undefined') turnstile.reset();
         }
     } catch (error) {

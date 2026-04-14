@@ -124,7 +124,7 @@ document.getElementById('smart-contact-form').addEventListener('submit', async (
     formData.append("access_key", "49b27977-0e55-406e-9113-345b874e22ba"); 
 
     try {
-        const response = await fetch("https://api.web3forms.com/submit", {
+        const response = await fetch("/api/submit", {
             method: "POST",
             body: formData
         });
@@ -136,12 +136,15 @@ document.getElementById('smart-contact-form').addEventListener('submit', async (
             contactSuccess.classList.remove('translate-y-full');
             contactSuccess.classList.add('translate-y-0');
             form.reset();
+            if (typeof turnstile !== 'undefined') turnstile.reset();
         } else {
-            alert("Erreur lors de l'envoi. Veuillez réessayer.");
+            alert(result.message || "Erreur lors de l'envoi. Veuillez réessayer.");
+            if (typeof turnstile !== 'undefined') turnstile.reset();
         }
     } catch (error) {
         console.error("Erreur réseau :", error);
         alert("Impossible de contacter le serveur.");
+        if (typeof turnstile !== 'undefined') turnstile.reset();
     } finally {
         button.innerHTML = originalBtnText;
         button.disabled = false;

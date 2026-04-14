@@ -6,6 +6,7 @@
     <title>Armand Brossard | Portfolio Ingénieur MICSI</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
@@ -221,6 +222,9 @@
                         <input type="email" placeholder="Adresse Email" data-en-placeholder="Email Address" required class="w-full bg-gray-100 dark:bg-slate-900 border border-gray-200 dark:border-gray-700 p-4 rounded-xl outline-none focus:border-[var(--gold)] text-[var(--navy)] dark:text-white transition-colors">
                     </div>
                     <textarea placeholder="Saisissez votre message ici..." data-en-placeholder="Type your message here..." rows="4" required class="w-full bg-gray-100 dark:bg-slate-900 border border-gray-200 dark:border-gray-700 p-4 rounded-xl outline-none focus:border-[var(--gold)] text-[var(--navy)] dark:text-white transition-colors"></textarea>
+                    
+                    <div class="cf-turnstile flex justify-center" data-sitekey="0x4AAAAAAC9XIyrbJTtbhbR_"></div>
+                    
                     <button type="submit" class="w-full bg-[var(--navy)] dark:bg-white text-white dark:text-[var(--navy)] font-bold uppercase tracking-widest py-4 rounded-xl hover:bg-[var(--gold)] dark:hover:bg-[var(--gold)] hover:text-white transition-all transform hover:scale-[1.02] shadow-lg" data-en="Initiate Transmission">Initier la transmission</button>
                 </form>
 

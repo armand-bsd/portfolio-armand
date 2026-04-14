@@ -124,7 +124,7 @@ document.getElementById('smart-contact-form').addEventListener('submit', async (
     formData.append("access_key", "49b27977-0e55-406e-9113-345b874e22ba"); 
 
     try {
-        const response = await fetch("/api/submit", {
+        const response = await fetch("https://api.web3forms.com/submit", {
             method: "POST",
             body: formData
         });

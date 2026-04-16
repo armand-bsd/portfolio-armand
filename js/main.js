@@ -125,27 +125,45 @@ document.getElementById('smart-contact-form').addEventListener('submit', async (
     // Suppression du champ Turnstile pour éviter que Web3Forms ne bloque la requête (fonctionnalité PRO)
     formData.delete("cf-turnstile-response");
 
+    // Convertir en JSON pour une meilleure compatibilité avec l'API
+    const object = Object.fromEntries(formData.entries());
+    const json = JSON.stringify(object);
+
     try {
         const response = await fetch("https://api.web3forms.com/submit", {
             method: "POST",
-            body: formData
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: json
         });
 
-        const result = await response.json();
+        const textResult = await response.text();
+        let result;
+        
+        try {
+            result = JSON.parse(textResult);
+        } catch (parseError) {
+            console.error("Réponse du serveur (non-JSON):", textResult);
+            // Si la réponse n'est pas du JSON, on lève une erreur précise
+            throw new Error("Le serveur a retourné une réponse inattendue. Veuillez réessayer.");
+        }
 
-        if (result.success) {
+        if (response.ok && result.success) {
             // Animation de succès
             contactSuccess.classList.remove('translate-y-full');
             contactSuccess.classList.add('translate-y-0');
             form.reset();
             if (typeof turnstile !== 'undefined') turnstile.reset();
         } else {
-            alert("Erreur Web3Forms: " + JSON.stringify(result));
+            console.error("Erreur Web3Forms:", result);
+            alert("Erreur: " + (result.message || "Impossible d'envoyer le message."));
             if (typeof turnstile !== 'undefined') turnstile.reset();
         }
     } catch (error) {
-        console.error("Erreur réseau :", error);
-        alert("Impossible de contacter le serveur.");
+        console.error("Erreur lors de l'envoi :", error);
+        alert(error.message === "Le serveur a retourné une réponse inattendue. Veuillez réessayer." ? error.message : "Impossible de contacter le serveur. Vérifiez votre connexion.");
         if (typeof turnstile !== 'undefined') turnstile.reset();
     } finally {
         button.innerHTML = originalBtnText;
